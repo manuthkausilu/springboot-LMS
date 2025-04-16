@@ -7,10 +7,11 @@ The **E-Learning Management System** is a comprehensive online learning platform
 ## Features
 
 - **User Authentication:** Secure user login and registration.
-- **Course Listing:** Browse courses by category, with search functionality.
-- **Learning List:** Add, update, or remove courses from the learning list.
-- **Enrollment Management:** Manage and track user enrollments in courses.
-- **Admin Panel:** Administrative functionalities for managing courses, categories, and enrollments.
+- **Course Listing:** Browse courses and can buy courses
+- **Mail Service:** User can Mail to Academy,After Complete Registation and Payement Send Success Mail.
+- **Enrollment Management:** user enrollments in courses.
+- **Payment:** User can pay for a course(payhere payment gateway implemented)
+- **Admin Panel:** Administrative functionalities for managing courses, users, and enrollments.
 
 ## Tech Stack
 
@@ -24,8 +25,8 @@ The **E-Learning Management System** is a comprehensive online learning platform
 
 The application follows a typical layered architecture for Spring Boot web applications:
 
-- **Model:** Java entities representing the application's data, managed by Spring Data JPA.
-- **View:** HTML templates rendered by Thymeleaf (or another templating engine).
+- **Entity:** Java entities representing the application's data, managed by Spring Data JPA.
+- **View:** HTML,CSS,JS using create UI from FrontEnd Module. 
 - **Controller:** Spring MVC Controllers handling user requests and interacting with the service layer.
 - **Service:** Spring Services containing business logic.
 - **Repository:** Spring Data JPA Repositories for database interaction.
@@ -34,9 +35,13 @@ The application follows a typical layered architecture for Spring Boot web appli
 
 ### Prerequisites
 
-- Java 11 or higher
+- Java 17 or higher( Java 21 Perfect for this )
 - MySQL 5.7 or higher
 - Maven 3.6 or higher
+
+- Create Payhere Sandbox Account
+
+- need SMPT SERVERE 
 
 ### Steps
 
