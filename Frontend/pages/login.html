@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Register - Sekai</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="../assets/img/sekai.png" rel="icon">
+  <link href="../assets/img/sekai.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- Custom CSS -->
+  <style>
+    /* Base Styles */
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    /* Login Container */
+    .login-container {
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      width: 100%;
+      max-width: 450px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .login-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: #5fcf80;
+    }
+
+    .login-container h2 {
+      color: #2c3e50;
+      font-weight: 700;
+      font-size: 28px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    /* Form Elements */
+    .login-form .form-group {
+      position: relative;
+      margin-bottom: 25px;
+    }
+
+    .login-form .form-control {
+      background: #f8f9fa;
+      border: 2px solid #dfe6e9;
+      border-radius: 10px;
+      height: 50px;
+      padding: 10px 15px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    .login-form .form-control:focus {
+      border-color: #5fcf80;
+      background: #ffffff;
+      box-shadow: 0 0 8px rgba(95, 207, 128, 0.3);
+      outline: none;
+    }
+
+    .login-form .btn-login {
+      background: #5fcf80;
+      border: none;
+      padding: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 10px;
+      color: #fff;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    .login-form .btn-login:hover {
+      background: #4db369;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(95, 207, 128, 0.4);
+    }
+
+    /* Links */
+    .login-links {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .login-links a {
+      color: #7f8c8d;
+      font-size: 14px;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .login-links a:hover {
+      color: #5fcf80;
+    }
+
+    .login-links .register-text {
+      color: #7f8c8d;
+      font-size: 14px;
+    }
+
+    .login-links .register-text a {
+      color: #5fcf80;
+      font-weight: 600;
+    }
+
+    .login-links .register-text a:hover {
+      color: #4db369;
+    }
+
+    /* Alerts */
+    .alert {
+      padding: 12px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      display: none;
+      transition: opacity 0.3s ease;
+      width: 100%;
+    }
+
+    .alert-success {
+      background-color: #e6f9e6;
+      color: #2d862d;
+      border: 1px solid #b3e6b3;
+    }
+
+    .alert-danger {
+      background-color: #fce8e8;
+      color: #a94442;
+      border: 1px solid #f4c7c7;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: 1000;
+      overflow: auto;
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    .modal-content {
+      background: #ffffff; /* Match login-container background */
+      padding: 30px;
+      border-radius: 20px; /* Match login-container border-radius */
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); /* Match login-container shadow */
+      position: relative;
+      animation: slideIn 0.3s ease;
+      margin: 0 auto;
+      top: 50%;
+      transform: translateY(-50%);
+      overflow: hidden; /* Prevent overflow issues */
+    }
+
+    /* Add green top border to modal like login-container */
+    .modal-content::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: #5fcf80; /* Match green accent */
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(-100px); opacity: 0; }
+      to { transform: translateY(-50%); opacity: 1; }
+    }
+
+    .modal-content h3 {
+      color: #2c3e50;
+      font-weight: 600;
+      font-size: 24px;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    .modal-content .close-modal {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      color: #7f8c8d;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .modal-content .close-modal:hover {
+      color: #e74c3c;
+    }
+
+    /* Form fields in modal */
+    .modal-content .form-group {
+      position: relative;
+      margin-bottom: 25px; /* Consistent spacing between fields */
+    }
+
+    .modal-content .form-control {
+      background: #f8f9fa; /* Match login form input background */
+      border: 2px solid #dfe6e9; /* Match login form input border */
+      border-radius: 10px;
+      height: 50px;
+      padding: 10px 15px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    .modal-content .form-control:focus {
+      border-color: #5fcf80;
+      background: #ffffff;
+      box-shadow: 0 0 8px rgba(95, 207, 128, 0.3);
+      outline: none;
+    }
+
+    .modal-content .btn-submit {
+      background: #5fcf80;
+      border: none;
+      padding: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 10px;
+      color: #fff;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    .modal-content .btn-submit:hover {
+      background: #4db369;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(95, 207, 128, 0.4);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      body {
+        padding: 15px;
+      }
+
+      .login-container {
+        padding: 30px;
+        max-width: 100%;
+      }
+
+      .modal-content {
+        padding: 20px;
+        max-width: 90%;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .login-container h2, .modal-content h3 {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+
+      .login-form .form-control, .modal-content .form-control {
+        height: 45px;
+        font-size: 14px;
+        padding: 8px 12px;
+      }
+
+      .login-form .btn-login, .modal-content .btn-submit {
+        padding: 10px;
+        font-size: 14px;
+      }
+
+      .login-links a, .login-links .register-text {
+        font-size: 13px;
+      }
+
+      .alert {
+        font-size: 13px;
+        padding: 10px;
+        margin-bottom: 15px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      body {
+        padding: 10px;
+      }
+
+      .login-container {
+        padding: 20px;
+      }
+
+      .modal-content {
+        padding: 15px;
+        max-width: 95%;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .login-container h2, .modal-content h3 {
+        font-size: 20px;
+      }
+
+      .login-form .form-control, .modal-content .form-control {
+        height: 40px;
+        font-size: 13px;
+      }
+
+      .login-form .btn-login, .modal-content .btn-submit {
+        padding: 8px;
+        font-size: 13px;
+      }
+
+      .login-links a, .login-links .register-text {
+        font-size: 12px;
+      }
+
+      .alert {
+        font-size: 12px;
+        padding: 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- Login Container -->
+<div class="login-container">
+  <h2>Sign In</h2>
+
+  <div id="alertSuccess" class="alert alert-success"></div>
+  <div id="alertError" class="alert alert-danger"></div>
+
+  <form id="loginForm" class="login-form">
+    <div class="form-group">
+      <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" required>
+    </div>
+
+    <div class="form-group">
+      <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+    </div>
+
+    <button type="submit" class="btn-login">Sign In</button>
+  </form>
+
+  <div class="login-links">
+    <a href="#" id="forgotPasswordLink">Forgot Password?</a>
+    <p class="register-text mt-3">Don't have an account? <a href="register.html">Sign Up</a></p>
+  </div>
+</div>
+
+<!-- Forgot Password Modal -->
+<div id="forgotPasswordModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal" id="closeForgotModal">×</span>
+    <h3>Reset Password</h3>
+
+    <!-- Feedback Message Area -->
+    <div id="otpFeedback" class="alert" style="display: none;"></div>
+
+    <!-- Step 1: Request OTP -->
+    <form id="forgotPasswordForm" style="display: block;">
+      <div class="form-group">
+        <input type="email" class="form-control" id="forgotEmail" name="email" placeholder="Enter your email" required>
+      </div>
+      <button type="submit" class="btn-submit">Send OTP</button>
+    </form>
+
+    <!-- Step 2: Verify OTP -->
+    <form id="verifyOtpForm" style="display: none;">
+      <div class="form-group">
+        <input type="text" class="form-control" id="otp" name="otp" placeholder="Enter OTP" required>
+      </div>
+      <button type="submit" class="btn-submit">Verify OTP</button>
+    </form>
+
+    <!-- Step 3: Reset Password -->
+    <form id="resetPasswordForm" style="display: none;">
+      <div class="form-group">
+        <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="New Password" required>
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
+      </div>
+      <button type="submit" class="btn-submit">Reset Password</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+    // Show Forgot Password Modal
+    $('#forgotPasswordLink').on('click', function(e) {
+      e.preventDefault();
+      $('#forgotPasswordModal').show();
+      resetForms();
+    });
+
+    // Close Modal
+    $('#closeForgotModal').on('click', function() {
+      $('#forgotPasswordModal').hide();
+      resetForms();
+    });
+
+    // Reset forms to initial state
+    function resetForms() {
+      $('#forgotPasswordForm')[0].reset();
+      $('#verifyOtpForm')[0].reset();
+      $('#resetPasswordForm')[0].reset();
+      $('#forgotPasswordForm').show();
+      $('#verifyOtpForm').hide();
+      $('#resetPasswordForm').hide();
+      $('#otpFeedback').hide(); // Hide feedback area
+      $('.alert').hide();
+    }
+
+    // Step 1: Request OTP
+    $('#forgotPasswordForm').on('submit', function(e) {
+      e.preventDefault();
+      $('.alert').hide();
+
+      const email = $('#forgotEmail').val().trim();
+
+      // Validate email
+      if (!validateEmail(email)) {
+        $('#otpFeedback').text('Please enter a valid email address.').show().addClass('alert-danger');
+        return;
+      }
+
+      $.ajax({
+        url: 'http://localhost:8080/api/v1/auth/forgot-password',
+        type: 'POST',
+        data: { email: email },
+        success: function(response) {
+          $('#otpFeedback').text('OTP sent successfully! Please check your email.').show().removeClass('alert-danger').addClass('alert-success');
+          $('#forgotPasswordForm').hide();
+          $('#verifyOtpForm').show();
+        },
+        error: function(xhr) {
+          let errorMessage = 'Failed to send OTP. Please try again.';
+          try {
+            errorMessage = xhr.responseText || errorMessage;
+          } catch(e) {}
+          $('#otpFeedback').text(errorMessage).show().removeClass('alert-success').addClass('alert-danger');
+        }
+      });
+    });
+
+    // Step 2: Verify OTP
+    $('#verifyOtpForm').on('submit', function(e) {
+      e.preventDefault();
+      $('.alert').hide();
+
+      const email = $('#forgotEmail').val().trim();
+      const otp = $('#otp').val().trim();
+
+      // Validate OTP
+      if (!otp) {
+        $('#otpFeedback').text('Please enter the OTP.').show().addClass('alert-danger');
+        return;
+      }
+
+      $.ajax({
+        url: 'http://localhost:8080/api/v1/auth/verify-otp',
+        type: 'POST',
+        data: { email: email, otp: otp },
+        success: function(response) {
+          $('#otpFeedback').text('OTP verified successfully!').show().removeClass('alert-danger').addClass('alert-success');
+          $('#verifyOtpForm').hide();
+          $('#resetPasswordForm').show();
+        },
+        error: function(xhr) {
+          let errorMessage = 'Invalid or expired OTP.';
+          try {
+            errorMessage = xhr.responseText || errorMessage;
+          } catch(e) {}
+          $('#otpFeedback').text(errorMessage).show().removeClass('alert-success').addClass('alert-danger');
+        }
+      });
+    });
+
+    // Step 3: Reset Password
+    $('#resetPasswordForm').on('submit', function(e) {
+      e.preventDefault();
+      $('.alert').hide();
+
+      const email = $('#forgotEmail').val().trim();
+      const otp = $('#otp').val().trim();
+      const newPassword = $('#newPassword').val().trim();
+      const confirmPassword = $('#confirmPassword').val().trim();
+
+      // Validate passwords
+      if (!newPassword || !confirmPassword) {
+        $('#otpFeedback').text('Please fill in both password fields.').show().addClass('alert-danger');
+        return;
+      }
+
+      // Password validation regex
+      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+      if (!passwordRegex.test(newPassword)) {
+        $('#otpFeedback').text('Password must be at least 8 characters long, with at least one uppercase letter, one lowercase letter, one number, and one special character.').show().addClass('alert-danger');
+        return;
+      }
+
+      if (newPassword !== confirmPassword) {
+        $('#otpFeedback').text('Passwords do not match.').show().addClass('alert-danger');
+        return;
+      }
+
+      $.ajax({
+        url: 'http://localhost:8080/api/v1/auth/reset-password',
+        type: 'POST',
+        data: { email: email, otp: otp, newPassword: newPassword },
+        success: function(response) {
+          $('#otpFeedback').text('Password reset successfully! You can now log in.').show().removeClass('alert-danger').addClass('alert-success');
+          setTimeout(function() {
+            $('#forgotPasswordModal').hide();
+            resetForms();
+          }, 1500);
+        },
+        error: function(xhr) {
+          let errorMessage = 'Failed to reset password. Please try again.';
+          try {
+            errorMessage = xhr.responseText || errorMessage;
+          } catch(e) {}
+          $('#otpFeedback').text(errorMessage).show().removeClass('alert-success').addClass('alert-danger');
+        }
+      });
+    });
+
+    // Login Form Submission
+    $('#loginForm').on('submit', function(e) {
+      e.preventDefault();
+      $('#alertSuccess').hide();
+      $('#alertError').hide();
+
+      const loginData = {
+        email: $('#email').val().trim(),
+        password: $('#password').val().trim()
+      };
+
+      // Validate login fields
+      if (!validateEmail(loginData.email) || !loginData.password) {
+        $('#alertError').text('Please enter valid email and password.').show();
+        return;
+      }
+
+      $.ajax({
+        url: 'http://localhost:8080/api/v1/auth/login',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(loginData),
+        success: function(response) {
+          if (response.statusCode === 200) {
+            $('#alertSuccess').text('Login successful! Redirecting...').show();
+            if (response.token) {
+              localStorage.setItem('userToken', response.token);
+            }
+            if (response.role) {
+              localStorage.setItem('userRole', response.role);
+            }
+            if (response.expirationTime) {
+              localStorage.setItem('tokenExpiration', response.expirationTime);
+            }
+            setTimeout(function() {
+              window.location.href = 'index.html';
+            }, 1500);
+          } else {
+            $('#alertError').text(response.message || 'Login failed. Please check your credentials.').show();
+          }
+        },
+        error: function(xhr) {
+          let errorMessage = 'Login failed. Please check your credentials.';
+          try {
+            const response = JSON.parse(xhr.responseText);
+            errorMessage = response.message || errorMessage;
+          } catch(e) {}
+          $('#alertError').text(errorMessage).show();
+        }
+      });
+    });
+
+    // Email validation function
+    function validateEmail(email) {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(String(email).toLowerCase());
+    }
+  });
+</script>
+</body>
+</html>

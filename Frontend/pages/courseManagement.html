@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Course Management - Sekai</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="../assets/img/sekai.png" rel="icon">
+  <link href="../assets/img/sekai.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="../assets/css/main.css" rel="stylesheet">
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <style>
+    .btn-custom {
+      background-color: #5fcf80;
+      border-color: #5fcf80;
+      color: white;
+      padding: 6px 15px;
+      font-size: 14px;
+    }
+    .btn-custom:hover {
+      background-color: #4cb266;
+      border-color: #4cb266;
+      color: white;
+    }
+    .btn-add-course {
+      padding: 8px 20px;
+      font-size: 16px;
+    }
+    .btn-danger {
+      background-color: #dc3545;
+      border-color: #dc3545;
+      color: white;
+      padding: 6px 15px;
+      font-size: 14px;
+    }
+    .btn-danger:hover {
+      background-color: #c82333;
+      border-color: #c82333;
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: transparent;
+      border-bottom: 1px solid #dee2e6;
+    }
+    .card-header h1 {
+      color: black;
+    }
+    /* Custom modal styling */
+    .modal-header-danger {
+      background-color: #dc3545;
+      color: white;
+    }
+    .modal-title i {
+      margin-right: 8px;
+    }
+  </style>
+</head>
+
+<body class="events-page">
+
+<header id="header" class="header d-flex align-items-center sticky-top">
+  <div class="container-fluid container-xl position-relative d-flex align-items-center">
+    <a href="index.html" class="logo d-flex align-items-center me-auto">
+      <h1 class="sitename">Sekai</h1>
+    </a>
+
+    <nav id="navmenu" class="navmenu">
+      <ul>
+        <li><a href="index.html">Home<br></a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="trainers.html">Trainers</a></li>
+        <li id="admin-nav" style="display: none;"><a href="admin.html" class="active">Admin</a></li>
+        <li id="profile-nav" style="display: none;"><a href="profile.html">Profile</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+    </nav>
+
+    <div class="auth-container">
+      <a class="btn-getstarted" id="sign-in-button" href="login.html">Sign In</a>
+      <div class="user-profile" id="user-profile" style="display: none;">
+        <span class="btn-getstarted" id="user-name">User Name</span>
+        <a class="btn-get-started" id="logout-button" href="#">Logout</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="main">
+
+  <!-- Page Title -->
+  <div class="page-title" data-aos="fade">
+    <div class="heading">
+      <div class="container">
+        <div class="row d-flex justify-content-center text-center">
+          <div class="col-lg-8">
+            <h1>Course Management</h1>
+            <p class="mb-0">Manage your courses efficiently. Add, update, or delete courses as needed to keep your offerings up to date.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav class="breadcrumbs">
+      <div class="container">
+        <ol>
+          <li><a href="index.html">Home</a></li>
+          <li class="current">Course Management</li>
+        </ol>
+      </div>
+    </nav>
+  </div><!-- End Page Title -->
+
+  <!-- Course Section -->
+  <div class="container mt-4">
+    <div class="card shadow">
+      <div class="card-header">
+        <h1 class="h4 mb-0">Course Management Dashboard</h1>
+      </div>
+
+      <div class="card-body">
+        <div id="courseFormSection" class="mb-4 p-3 bg-light rounded">
+          <div class="row align-items-center">
+            <div class="col-md-9">
+              <h2 class="h5" id="formTitle">Add New Course</h2>
+              <form id="courseForm" enctype="multipart/form-data">
+                <input type="hidden" id="courseId" name="courseId">
+                <div class="mb-3">
+                  <input type="file" name="file" class="form-control" id="fileInput">
+                  <small class="form-text text-muted">Required for new courses, optional for updates</small>
+                </div>
+                <div class="mb-3">
+                  <input type="text" name="title" class="form-control" placeholder="Title" id="titleInput" required>
+                </div>
+                <div class="mb-3">
+                  <textarea name="description" class="form-control" placeholder="Description" rows="3" id="descriptionInput"></textarea>
+                </div>
+                <div class="mb-3">
+                  <input type="number" name="price" class="form-control" placeholder="Price" id="priceInput" required>
+                </div>
+                <div class="mb-3">
+                  <input type="text" name="duration" class="form-control" placeholder="Duration" id="durationInput" required>
+                </div>
+              </form>
+            </div>
+            <div class="col-md-3 text-end">
+              <button form="courseForm" type="submit" class="btn btn-custom btn-add-course" id="submitButton">
+                <i class="bi bi-plus-circle"></i> Add Course
+              </button>
+              <button class="btn btn-secondary btn-add-course mt-2" id="cancelButton" style="display: none;" onclick="resetForm()">
+                <i class="bi bi-x-circle"></i> Cancel Update
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div id="courseListSection">
+          <h2 class="h5 mb-3">All Courses</h2>
+          <div class="table-responsive">
+            <table id="coursesTable" class="table table-bordered table-hover">
+              <thead class="table-light">
+              <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Duration</th>
+                <th>Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              <!-- Courses will be dynamically populated here -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Course Section -->
+
+  <!-- Delete Confirmation Modal -->
+  <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header modal-header-danger">
+          <h5 class="modal-title" id="deleteConfirmModalLabel"><i class="bi bi-exclamation-triangle"></i> Confirm Deletion</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to delete this course? This action cannot be undone.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-circle"></i> Cancel</button>
+          <button type="button" class="btn btn-danger" id="confirmDeleteBtn"><i class="bi bi-trash"></i> Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer id="footer" class="footer position-relative light-background">
+
+  <div class="container footer-top">
+    <div class="row gy-4">
+      <div class="col-lg-4 col-md-6 footer-about">
+        <a href="index.html" class="logo d-flex align-items-center">
+          <span class="sitename">Sekai</span>
+        </a>
+        <div class="footer-contact pt-3">
+          <p>A108 Gonapola Horana</p>
+          <p>Sri Lanka, NY 535022</p>
+          <p class="mt-3"><strong>Phone:</strong> <span>+94 770 291 366</span></p>
+          <p><strong>Email:</strong> <span>manuthkausilu20031018@gmail.com</span></p>
+        </div>
+        <div class="social-links d-flex mt-4">
+          <a href=""><i class="bi bi-twitter-x"></i></a>
+          <a href=""><i class="bi bi-facebook"></i></a>
+          <a href=""><i class="bi bi-instagram"></i></a>
+          <a href=""><i class="bi bi-linkedin"></i></a>
+        </div>
+      </div>
+
+      <div class="col-lg-2 col-md-3 footer-links">
+        <h4>Useful Links</h4>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About us</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Terms of service</a></li>
+          <li><a href="#">Privacy policy</a></li>
+        </ul>
+      </div>
+
+      <div class="col-lg-2 col-md-3 footer-links">
+        <h4>Our Services</h4>
+        <ul>
+          <li><a href="#">Web Design</a></li>
+          <li><a href="#">Web Development</a></li>
+          <li><a href="#">App Design</a></li>
+          <li><a href="#">App Development</a></li>
+          <li><a href="#">Graphic Design</a></li>
+        </ul>
+      </div>
+
+      <div class="col-lg-4 col-md-12 footer-newsletter">
+        <h4>Our Newsletter</h4>
+        <p>Subscribe to our newsletter and receive the latest news about our products and services!</p>
+        <form action="../forms/newsletter.php" method="post" class="php-email-form">
+          <div class="newsletter-form"><input type="email" name="email"><input type="submit" value="Subscribe"></div>
+          <div class="loading">Loading</div>
+          <div class="error-message"></div>
+          <div class="sent-message">Your subscription request has been sent. Thank you!</div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="container copyright text-center mt-4">
+    <p>© <span>Copyright</span> <strong class="px-1 sitename">Sekai</strong> <span>All Rights Reserved</span></p>
+    <div class="credits">
+      Designed by <a href="#">Manuth_Kausilu</a>
+    </div>
+  </div>
+
+</footer>
+
+<!-- Scroll Top -->
+<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<!-- Preloader -->
+<div id="preloader"></div>
+
+<!-- Vendor JS Files -->
+<script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/vendor/php-email-form/validate.js"></script>
+<script src="../assets/vendor/aos/aos.js"></script>
+<script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="../assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+<!-- Main JS File -->
+<script src="../assets/js/main.js"></script>
+<script src="../script/nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    const token = localStorage.getItem('userToken');
+    if (!token) {
+      showAlert('Unauthorized: Please log in first.', 'danger');
+      setTimeout(() => window.location.href = 'login.html', 2000);
+      return;
+    }
+
+    loadCourses();
+
+    $('#courseForm').submit(function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      const courseId = $('#courseId').val();
+      const url = courseId ?
+              `http://localhost:8080/api/v1/courses/update/${courseId}` :
+              'http://localhost:8080/api/v1/courses/add';
+      const method = courseId ? 'PUT' : 'POST';
+
+      $.ajax({
+        url: url,
+        type: method,
+        headers: {
+          'Authorization': 'Bearer ' + token
+        },
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function() {
+          showAlert(courseId ? 'Course updated successfully.' : 'Course added successfully.', 'success');
+          resetForm();
+          loadCourses();
+        },
+        error: function(xhr) {
+          showAlert(`Failed to ${courseId ? 'update' : 'add'} course: ` +
+                  (xhr.responseJSON?.message || 'An error occurred.'), 'danger');
+        }
+      });
+    });
+  });
+
+  function showAlert(message, type) {
+    const alertHtml = `
+      <div class="alert alert-${type} alert-dismissible fade show" role="alert">
+        ${message}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    `;
+    $('main .container.mt-4').prepend(alertHtml);
+    setTimeout(() => $('.alert').alert('close'), 3000);
+  }
+
+  function loadCourses() {
+    $.ajax({
+      url: 'http://localhost:8080/api/v1/courses/all',
+      type: 'GET',
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('userToken')
+      },
+      success: function(response) {
+        const courses = Array.isArray(response.courseList) ? response.courseList : [];
+        const tbody = $('#coursesTable tbody');
+        tbody.empty();
+
+        courses.forEach(course => {
+          tbody.append(`
+            <tr>
+              <td>${course.id || 'N/A'}</td>
+              <td>${course.title || 'N/A'}</td>
+              <td>${course.description || 'No description'}</td>
+              <td>${course.price || '0'}</td>
+              <td>${course.duration || 'N/A'}</td>
+              <td>
+                <button class="btn btn-custom me-2" onclick="populateForm(${course.id}, '${course.title}', '${course.description || ''}', ${course.price}, '${course.duration}')">
+                  <i class="bi bi-pencil-square"></i> Update
+                </button>
+                <button class="btn btn-danger" onclick="showDeleteConfirm(${course.id})">
+                  <i class="bi bi-trash"></i> Delete
+                </button>
+              </td>
+            </tr>
+          `);
+        });
+      },
+      error: function(xhr) {
+        showAlert('Failed to load courses: ' + (xhr.responseJSON?.message || 'An error occurred.'), 'danger');
+      }
+    });
+  }
+
+  function showDeleteConfirm(courseId) {
+    const modal = new bootstrap.Modal(document.getElementById('deleteConfirmModal'));
+    $('#confirmDeleteBtn').off('click').on('click', function() {
+      deleteCourse(courseId);
+      modal.hide();
+    });
+    modal.show();
+  }
+
+  function deleteCourse(courseId) {
+    $.ajax({
+      url: `http://localhost:8080/api/v1/courses/delete/${courseId}`,
+      type: 'DELETE',
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('userToken')
+      },
+      success: function() {
+        showAlert('Course deleted successfully.', 'success');
+        loadCourses();
+      },
+      error: function(xhr) {
+        showAlert('Failed to delete course: ' + (xhr.responseJSON?.message || 'An error occurred.'), 'danger');
+      }
+    });
+  }
+
+  function populateForm(courseId, title, description, price, duration) {
+    $('#courseId').val(courseId);
+    $('#titleInput').val(title.replace(/"/g, '"'));
+    $('#descriptionInput').val(description);
+    $('#priceInput').val(price);
+    $('#durationInput').val(duration.replace(/"/g, '"'));
+    $('#formTitle').text('Update Course');
+    $('#submitButton').html('<i class="bi bi-check-circle"></i> Update Course');
+    $('#cancelButton').show();
+    $('#fileInput').removeAttr('required');
+  }
+
+  function resetForm() {
+    $('#courseForm')[0].reset();
+    $('#courseId').val('');
+    $('#formTitle').text('Add New Course');
+    $('#submitButton').html('<i class="bi bi-plus-circle"></i> Add Course');
+    $('#cancelButton').hide();
+    $('#fileInput').attr('required', 'required');
+  }
+</script>
+
+</body>
+</html>
