@@ -50,3 +50,6 @@ The application follows a typical layered architecture for Spring Boot web appli
    ```bash
    git clone [https://github.com/manuthkausilu/your-LMS-Repository-URL.git](https://github.com/manuthkausilu/your-LMS-Repository-URL.git)
    cd your-LMS-repository-name
+
+
+## Link to the Demo Video – https://youtu.be/3wzkZrCqbwE
