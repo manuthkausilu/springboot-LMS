@@ -43,12 +43,12 @@ public class PaymentController {
     @GetMapping("/return")
     public RedirectView handleReturn() {
         System.out.println("return");
-        return new RedirectView("http://localhost:63342/AAD%20Coursework/Frontend/pages/courses.html");
+        return new RedirectView("/payment-success.html");
     }
 
     @GetMapping("/cancel")
     public RedirectView handleCancel() {
         System.out.println("cancel");
-        return new RedirectView("http://localhost:63342/AAD%20Coursework/Frontend/pages/courses.html");
+        return new RedirectView("/payment-cancel.html");
     }
 }

@@ -40,4 +40,7 @@ public class Response {
     private EnrollmentDTO enrollment;
     private List<EnrollmentDTO> enrollmentList;
 
+    private EventDTO eventDTO;
+    private List<EventDTO> eventDTOList;
+
 }

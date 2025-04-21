@@ -47,6 +47,32 @@ $(document).ready(function() {
                 console.error("Error fetching course count:", error);
             }
         });
+
+        // Fetch event count
+        $.ajax({
+            url: "http://localhost:8080/api/v1/events/eventCount",
+            type: "GET",
+            dataType: "json",
+            success: function(eventCount) { // වෙනස් කළා
+                console.log("AJAX Success - Event Count:", eventCount);
+
+                var $eventSpan = $("#counts")
+                    .find("p:contains('Events')")
+                    .siblings(".purecounter");
+
+                console.log("Element selected for Events:", $eventSpan);
+
+                $eventSpan.attr('data-purecounter-end', eventCount); // Update the data attribute
+
+                // Re-initialize PureCounter
+                new PureCounter();
+            },
+            error: function(xhr, status, error) {
+                console.error("Error fetching event count:", error);
+            }
+        });
+
+
     }
 
     updateCounts();

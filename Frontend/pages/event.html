@@ -4,35 +4,93 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Admin - Sekai</title>
+    <title>Events - Sekai</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
 
-    <!-- Favicons -->
     <link href="../assets/img/sekai.png" rel="icon">
     <link href="../assets/img/sekai.png" rel="apple-touch-icon">
 
-    <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
-    <!-- Vendor CSS Files -->
     <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
     <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
     <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
     <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-    <!-- Main CSS File -->
     <link href="../assets/css/main.css" rel="stylesheet">
 
-    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        .event-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            height: 100%; /* Make card height 100% */
+        }
+
+        .event-img-container {
+            width: 100%;
+            height: 200px; /* Fixed height for images */
+            overflow: hidden;
+        }
+
+        .event-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Cover the area, may crop */
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .event-card:hover .event-img {
+            transform: scale(1.05);
+        }
+
+        .event-details {
+            padding: 15px;
+            flex-grow: 1; /* Allow details to fill remaining height */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .event-title {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .event-content {
+            font-size: 0.9em;
+            color: #666;
+            flex-grow: 1; /* Push content to top */
+        }
+
+        .modal-event-img {
+            width: 100%;
+            height: 300px; /* Fixed height for modal image */
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .modal-title {
+            font-weight: bold;
+        }
+
+        .modal-event-content {
+            margin-top: 10px;
+        }
+    </style>
 
 </head>
 
-<body class="events-page">
+<body class="courses-page">
 
 <header id="header" class="header d-flex align-items-center sticky-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
@@ -47,8 +105,8 @@
                 <li><a href="about.html">About</a></li>
                 <li><a href="courses.html">Courses</a></li>
                 <li><a href="trainers.html">Trainers</a></li>
-                <li><a href="event.html">Events</a></li>
-                <li id="admin-nav" style="display: none;"><a href="admin.html" class="active">Admin</a></li>
+                <li><a href="event.html" class="active">Events</a></li>
+                <li id="admin-nav" style="display: none;"><a href="admin.html">Admin</a></li>
                 <li id="profile-nav" style="display: none;"><a href="profile.html">Profile</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
@@ -68,14 +126,13 @@
 
 <main class="main">
 
-    <!-- Page Title -->
     <div class="page-title" data-aos="fade">
         <div class="heading">
             <div class="container">
                 <div class="row d-flex justify-content-center text-center">
                     <div class="col-lg-8">
-                        <h1>Admin</h1>
-                        <p class="mb-0">Odio et unde deleniti. Deserunt numquam exercitationem. Officiis quo odio sint voluptas consequatur ut a odio voluptatem. Sit dolorum debitis veritatis natus dolores. Quasi ratione sint. Sit quaerat ipsum dolorem.</p>
+                        <h1>Events</h1>
+                        <p class="mb-0">All Events</p>
                     </div>
                 </div>
             </div>
@@ -84,90 +141,34 @@
             <div class="container">
                 <ol>
                     <li><a href="index.html">Home</a></li>
-                    <li class="current">Admin</li>
+                    <li class="current">Events</li>
                 </ol>
             </div>
         </nav>
-    </div><!-- End Page Title -->
+    </div><section id="events" class="events">
+    <div class="container" data-aos="fade-up">
 
-    <!-- admins Section -->
-    <section id="admins" class="admins section">
-
-        <div class="container" data-aos="fade-up">
-
-            <div class="row">
-
-                <div class="col-md-6 d-flex align-items-stretch">
-                    <div class="card">
-                        <div class="card-img">
-                            <img src="../assets/img/course-3.jpg" alt="...">
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="userManagement.html">USER MANAGEMENT</a></h5>
-                            <p class="fst-italic text-center">Admin</p>
-                            <p class="card-text">Manage user accounts efficiently. Add new admins, view user details, or remove users as needed.</p>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="col-md-6 d-flex align-items-stretch">
-                    <div class="card">
-                        <div class="card-img">
-                            <img src="../assets/img/events-item-1.jpg" alt="...">
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="courseManagement.html">COURSE MANAGEMENT</a></h5>
-                            <p class="fst-italic text-center">Admin</p>
-                            <p class="card-text">Manage your courses efficiently. Add, update, or delete courses as needed to keep your offerings up to date.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6 d-flex align-items-stretch">
-                    <div class="card">
-                        <div class="card-img">
-                            <img src="../assets/img/events-item-2.jpg" alt="...">
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="moduleManagement.html">MODULE MANAGEMENT</a></h5>
-                            <p class="fst-italic text-center">Admin</p>
-                            <p class="card-text">Organize and maintain course modules efficiently. Add, edit, or remove modules to enhance your courses.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6 d-flex align-items-stretch">
-                    <div class="card">
-                        <div class="card-img">
-                            <img src="../assets/img/course-1.jpg" alt="...">
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="videoManagement.html">VIDEO MANAGEMENT</a></h5>
-                            <p class="fst-italic text-center">Admin</p>
-                            <p class="card-text">Manage video content for your modules. Add, update, or delete videos, and preview them as needed.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6 d-flex align-items-stretch">
-                    <div class="card">
-                        <div class="card-img">
-                            <img src="../assets/img/about-2.jpg" alt="...">
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="eventManagement.html">EVENT MANAGEMENT</a></h5>
-                            <p class="fst-italic text-center">Admin</p>
-                            <p class="card-text">Manage event. Add, update, or delete.</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
+        <div class="row" id="events-container">
         </div>
 
-    </section><!-- /admins Section -->
+    </div>
+</section>
+
+    <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="eventModalLabel">Event Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="eventModalBody">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </main>
 
@@ -238,13 +239,10 @@
 
 </footer>
 
-<!-- Scroll Top -->
 <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-<!-- Preloader -->
 <div id="preloader"></div>
 
-<!-- Vendor JS Files -->
 <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="../assets/vendor/php-email-form/validate.js"></script>
 <script src="../assets/vendor/aos/aos.js"></script>
@@ -252,11 +250,94 @@
 <script src="../assets/vendor/purecounter/purecounter_vanilla.js"></script>
 <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
 
-<!-- Main JS File -->
 <script src="../assets/js/main.js"></script>
 
 <script src="../script/nav.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        // Function to fetch and display all events
+        function fetchAllEvents() {
+            $.ajax({
+                url: "http://localhost:8080/api/v1/events/all", // Replace with your actual endpoint
+                type: "GET",
+                dataType: "json",
+                success: function(response) {
+                    if (response.statusCode === 200 && Array.isArray(response.eventDTOList)) {
+                        displayEvents(response.eventDTOList); // Use eventDTOList
+                    } else {
+                        $("#events-container").html("<p>Failed to fetch events.</p>");
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error fetching events:", error);
+                    $("#events-container").html("<p>Error fetching events.</p>");
+                }
+            });
+        }
+
+        // Function to display events in the HTML
+        function displayEvents(events) {
+            let eventsHTML = "";
+            if (Array.isArray(events)) {
+                events.forEach(event => {
+                    eventsHTML += `
+                        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                            <div class="event-card">
+                                <div class="event-img-container">
+                                    <img src="http://localhost:8080${event.imgUrl}" class="event-img" alt="${event.title}">
+                                </div>
+                                <div class="event-details">
+                                    <h3 class="event-title"><a href="#" onclick="showEventDetails(${event.id})">${event.title}</a></h3>
+                                    <p class="event-content">${event.content}</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                $("#events-container").html(eventsHTML);
+            } else {
+                $("#events-container").html("<p>No events to display.</p>");
+            }
+        }
+
+        // Function to fetch event by ID and display in modal
+        function showEventDetails(eventId) {
+            $.ajax({
+                url: `http://localhost:8080/api/v1/events/getEventById/${eventId}`, // Use template literals for dynamic URL
+                type: "GET",
+                dataType: "json",
+                success: function(response) {
+                    if (response.statusCode === 200 && response.eventDTOList && response.eventDTOList.length > 0) {
+                        displayEventInModal(response.eventDTOList[0]); // Access the first element of the list
+                        $("#eventModal").modal('show');
+                    } else {
+                        alert("Failed to fetch event details.");
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error fetching event details:", error);
+                    alert("Error fetching event details.");
+                }
+            });
+        }
+
+        // Function to display event details in the modal
+        function displayEventInModal(event) {
+            const modalBody = `
+                <img src="http://localhost:8080${event.imgUrl}" class="modal-event-img" alt="${event.title}">
+                <h3>${event.title}</h3>
+                <p class="modal-event-content">${event.content}</p>
+            `;
+            $("#eventModalBody").html(modalBody);
+        }
+
+        // Call the function to fetch events when the page loads
+        fetchAllEvents();
+    });
+</script>
 
 </body>
 

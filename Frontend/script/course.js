@@ -90,7 +90,7 @@ $(document).ready(function() {
                         const enrollButton = isEnrolled
                             ? `<a href="profile.html" class="btn btn-primary" style="background-color: #5fcf80;">Learning Now</a>`
                             : `<button type="button" class="btn btn-success" id="paymentBtn" data-course-id="${course.id}">
-                                   Pay $${course.price} and Enroll
+                                   Pay LKR ${course.price.toFixed(2) || '0.00'} and Enroll
                                </button>`;
 
                         const modalHtml = `

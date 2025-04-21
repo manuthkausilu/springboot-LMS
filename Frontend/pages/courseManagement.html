@@ -76,6 +76,10 @@
     .modal-title i {
       margin-right: 8px;
     }
+    .actions-container {
+      display: flex;
+      gap: 5px;
+    }
   </style>
 </head>
 
@@ -93,6 +97,7 @@
         <li><a href="about.html">About</a></li>
         <li><a href="courses.html">Courses</a></li>
         <li><a href="trainers.html">Trainers</a></li>
+        <li><a href="event.html">Events</a></li>
         <li id="admin-nav" style="display: none;"><a href="admin.html" class="active">Admin</a></li>
         <li id="profile-nav" style="display: none;"><a href="profile.html">Profile</a></li>
         <li><a href="contact.html">Contact</a></li>
@@ -383,12 +388,14 @@
               <td>${course.price || '0'}</td>
               <td>${course.duration || 'N/A'}</td>
               <td>
+              <div class="actions-container">
                 <button class="btn btn-custom me-2" onclick="populateForm(${course.id}, '${course.title}', '${course.description || ''}', ${course.price}, '${course.duration}')">
                   <i class="bi bi-pencil-square"></i> Update
                 </button>
                 <button class="btn btn-danger" onclick="showDeleteConfirm(${course.id})">
                   <i class="bi bi-trash"></i> Delete
                 </button>
+                </div>
               </td>
             </tr>
           `);

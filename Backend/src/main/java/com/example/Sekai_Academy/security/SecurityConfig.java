@@ -36,7 +36,19 @@ public class SecurityConfig {
         httpSecurity.csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(request -> request
-                            .requestMatchers("api/v1/auth/**","api/v1/payments/notify","api/v1/payments/return","api/v1/payments/cancel","api/v1/users/userCount","api/v1/courses/courseCount","api/v1/courses/all","/ImagesFolder/**").permitAll()
+                        .requestMatchers("api/v1/auth/**",
+                                "api/v1/payments/notify",
+                                "api/v1/payments/return",
+                                "api/v1/payments/cancel",
+                                "api/v1/users/userCount",
+                                "api/v1/courses/courseCount",
+                                "api/v1/events/eventCount",
+                                "api/v1/courses/all",
+                                "api/v1/events/all",
+                                "api/v1/events/getEventById/**",
+                                "/payment-cancel.html",
+                                "/payment-success.html",
+                                "/ImagesFolder/**").permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())
