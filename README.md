@@ -140,7 +140,7 @@ This project is licensed under the [MIT](https://opensource.org/licenses/MIT) Li
 
 ## Contact
 
-[Manuth Kausilu] - [manuthkausilu20031018@gmail.com] - [https://github.com/manuthkausilu]
+[Manuth Kausilu] - [manuthkausilu20031018@gmail.com] - [https://www.linkedin.com/in/manuth-kausilu-732535316/]
 
 ---
 
